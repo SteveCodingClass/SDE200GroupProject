@@ -34,7 +34,6 @@ class ViewController: UIViewController {
         
     }
     
-    
     func createDeck()-> ([String], [Int]){
             // each suit of a card
             let suits = ["hearts", "spades", "clubs", "diamonds"]
