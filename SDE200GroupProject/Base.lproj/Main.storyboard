@@ -68,7 +68,7 @@
             </objects>
             <point key="canvasLocation" x="1040.4580152671756" y="-28.169014084507044"/>
         </scene>
-        <!--Title-->
+        <!--Blackjack-->
         <scene sceneID="fer-cB-r5S">
             <objects>
                 <viewController id="HIW-pS-f1G" customClass="SecondViewController" customModule="SDE200GroupProject" sceneMemberID="viewController">
@@ -153,8 +153,12 @@
                         <viewLayoutGuide key="safeArea" id="bNh-E4-s8V"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="U0b-RO-y8o">
-                        <barButtonItem key="rightBarButtonItem" title="History" id="NID-Y6-Ft5"/>
+                    <navigationItem key="navigationItem" title="Blackjack" id="U0b-RO-y8o">
+                        <barButtonItem key="rightBarButtonItem" title="History" id="NID-Y6-Ft5">
+                            <connections>
+                                <segue destination="dQP-Rs-JOs" kind="presentation" id="URF-s8-uK0"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="dealerCardsStackView" destination="5Q1-kO-B59" id="NQh-MW-7aE"/>
@@ -168,6 +172,74 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mty-qO-XGv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1770.2290076335878" y="-28.169014084507044"/>
+        </scene>
+        <!--History-->
+        <scene sceneID="KNN-Cz-bu2">
+            <objects>
+                <tableViewController id="kQw-PZ-iFs" customClass="HistoryTableViewController" customModule="SDE200GroupProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="X1D-Yu-AiN">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="2ha-nF-2s2">
+                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2ha-nF-2s2" id="meW-es-UXh">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="winner" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eA-la-Poo">
+                                            <rect key="frame" x="20" y="11" width="51" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="xx - yy" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJm-nN-IOx">
+                                            <rect key="frame" x="322" y="11" width="51" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Blackjack!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZL-Ez-t4V">
+                                            <rect key="frame" x="158" y="11" width="77" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="kQw-PZ-iFs" id="7C2-Pg-VEk"/>
+                            <outlet property="delegate" destination="kQw-PZ-iFs" id="kzc-Tb-DYJ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="History" id="Rnx-kw-JbT"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R6G-Mq-XHB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2676" y="627"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xvq-Qt-ZtX">
+            <objects>
+                <navigationController id="dQP-Rs-JOs" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="L3D-JL-ZG0">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="kQw-PZ-iFs" kind="relationship" relationship="rootViewController" id="aSG-4g-gYb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Ba-4w-OtN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1770" y="627"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hZ5-03-isz">

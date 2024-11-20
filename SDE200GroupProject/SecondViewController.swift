@@ -35,6 +35,7 @@ class SecondViewController: UIViewController {
     var playerArray: [String: [(String,Int)]] = [:]
     var dealerArray: [String: [(String,Int)]] = [:]
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -87,15 +88,17 @@ class SecondViewController: UIViewController {
     }
     
     func resetBoard() {
-        for i in self.playerCardsStackView.arrangedSubviews {
-            i.removeFromSuperview()
+        DispatchQueue.main.async {
+            for i in self.playerCardsStackView.arrangedSubviews {
+                i.removeFromSuperview()
+            }
+            for i in self.dealerCardsStackView.arrangedSubviews {
+                i.removeFromSuperview()
+            }
+            self.playerScore = 0; self.playerScoreLabel.text = "Player Score: "
+            self.dealerScore = 0; self.dealerScoreLabel.text = "Dealer Score: "
+            self.resultLabel.isHidden = true
         }
-        for i in self.dealerCardsStackView.arrangedSubviews {
-            i.removeFromSuperview()
-        }
-        self.playerScore = 0; self.playerScoreLabel.text = "Player Score: "
-        self.dealerScore = 0; self.dealerScoreLabel.text = "Dealer Score: "
-        self.resultLabel.isHidden = true
     }
     
     func dealDealerCards() {
@@ -131,21 +134,24 @@ class SecondViewController: UIViewController {
     
     func determineWinner() {
         let result: String
+        var blackjack: Bool = false
         if self.playerScore <= 21 && (self.playerScore > self.dealerScore || self.dealerScore > 21) {
+            if self.playerScore == 21 {blackjack = true}
             result = "Player WINS !"
         } else if (self.playerScore > 21 || self.dealerScore > self.playerScore) && self.dealerScore <= 21 {
+            if self.dealerScore == 21 {blackjack = true}
             result = "Dealer WINS !"
         } else {
             result = "PUSH !"
         }
+        Game.saveGameData(game: Game(winner: result, blackjack: blackjack, playerScore: self.playerScore, dealerScore: self.dealerScore))
         DispatchQueue.main.async {
             self.resultLabel.text = result
             self.resultLabel.isHidden = false
         }
         sleep(2)
-        DispatchQueue.main.async {
-            self.resetBoard()
-        }
+        self.resetBoard()
+        
     }
 
 
