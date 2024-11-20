@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         // Create the card deck
         let (deckOfCards, valuesArray) = createDeck()
         // Create the random card
-        let (randomCard, cardValue) = pickRandomCard(deckOfCards: deckOfCards, valueArray: valuesArray)
+        let (randomCard, _) = pickRandomCard(deckOfCards: deckOfCards, valueArray: valuesArray)
         // using function displayCard place the card in full screen
         displayCardOnMainScreen(card: randomCard)
         
