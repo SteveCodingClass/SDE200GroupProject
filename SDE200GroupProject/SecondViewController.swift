@@ -18,7 +18,9 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var dealerScoreLabel: UILabel!
     
     @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet var bustLabel: UILabel!
     
+    @IBOutlet var standButton: UIButton!
     
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -55,7 +57,12 @@ class SecondViewController: UIViewController {
         
         currentPlayerCards.append(card)
         playerScoreLabel.text = "Player One: \(playerScore)"
+        if self.playerScore > 21 {
+            bustLabel.isHidden = false
+            sleep(1)
+            standButtonTapped(standButton)
         }
+    }
         
     // Begin dealing dealer's cards
     @IBAction func standButtonTapped(_ sender: UIButton) {
@@ -98,6 +105,7 @@ class SecondViewController: UIViewController {
             self.playerScore = 0; self.playerScoreLabel.text = "Player Score: "
             self.dealerScore = 0; self.dealerScoreLabel.text = "Dealer Score: "
             self.resultLabel.isHidden = true
+            self.bustLabel.isHidden = true
         }
     }
     
@@ -137,20 +145,24 @@ class SecondViewController: UIViewController {
         var blackjack: Bool = false
         if self.playerScore <= 21 && (self.playerScore > self.dealerScore || self.dealerScore > 21) {
             if self.playerScore == 21 {blackjack = true}
-            result = "Player WINS !"
+            result = "\(self.nameLabelText) WINS !"
         } else if (self.playerScore > 21 || self.dealerScore > self.playerScore) && self.dealerScore <= 21 {
             if self.dealerScore == 21 {blackjack = true}
             result = "Dealer WINS !"
         } else {
             result = "PUSH !"
         }
-        Game.saveGameData(game: Game(winner: result, blackjack: blackjack, playerScore: self.playerScore, dealerScore: self.dealerScore))
+        Game.saveGameData(game: Game(winner: String(result.split(separator: " ")[0]), blackjack: blackjack, playerScore: self.playerScore, dealerScore: self.dealerScore))
         DispatchQueue.main.async {
             self.resultLabel.text = result
             self.resultLabel.isHidden = false
         }
         sleep(2)
         self.resetBoard()
+        
+    }
+    
+    @IBAction func unwindToGameView(segue: UIStoryboardSegue) {
         
     }
 

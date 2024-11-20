@@ -149,6 +149,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bust!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xbF-md-Kr4">
+                                <rect key="frame" x="325" y="482" width="40" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="bNh-E4-s8V"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -161,12 +168,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bustLabel" destination="xbF-md-Kr4" id="QdI-hQ-9XH"/>
                         <outlet property="dealerCardsStackView" destination="5Q1-kO-B59" id="NQh-MW-7aE"/>
                         <outlet property="dealerScoreLabel" destination="v2E-Bk-dAj" id="Isi-tT-fIO"/>
                         <outlet property="nameLabel" destination="7sB-PT-flD" id="IAL-6s-KEn"/>
                         <outlet property="playerCardsStackView" destination="fKq-i6-zo3" id="l1T-Me-Jbr"/>
                         <outlet property="playerScoreLabel" destination="aGe-up-EFc" id="RcO-tb-QiT"/>
                         <outlet property="resultLabel" destination="MsW-FH-Jgw" id="OBE-IG-ZXN"/>
+                        <outlet property="standButton" destination="jt0-xB-eXE" id="9Fh-mE-u7L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mty-qO-XGv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -182,7 +191,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="2ha-nF-2s2">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GameCell" id="2ha-nF-2s2" customClass="HistoryTableViewCell" customModule="SDE200GroupProject" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2ha-nF-2s2" id="meW-es-UXh">
@@ -190,14 +199,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="winner" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eA-la-Poo">
-                                            <rect key="frame" x="20" y="11" width="51" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="xx - yy" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJm-nN-IOx">
-                                            <rect key="frame" x="322" y="11" width="51" height="21"/>
+                                            <rect key="frame" x="20" y="11" width="130" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -210,8 +212,20 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="xx - yy" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJm-nN-IOx">
+                                            <rect key="frame" x="243" y="10" width="130" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="blackjackLabel" destination="CZL-Ez-t4V" id="4av-P5-1PF"/>
+                                    <outlet property="scoreLabel" destination="SJm-nN-IOx" id="epo-wv-Mra"/>
+                                    <outlet property="winnerLabel" destination="7eA-la-Poo" id="lPN-Uv-mXk"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -219,11 +233,18 @@
                             <outlet property="delegate" destination="kQw-PZ-iFs" id="kzc-Tb-DYJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="History" id="Rnx-kw-JbT"/>
+                    <navigationItem key="navigationItem" title="History" id="Rnx-kw-JbT">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="aNY-TX-gHC">
+                            <connections>
+                                <segue destination="iWX-2g-Oe5" kind="unwind" unwindAction="unwindToGameViewWithSegue:" id="WtV-aF-buU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R6G-Mq-XHB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="iWX-2g-Oe5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2676" y="627"/>
+            <point key="canvasLocation" x="2675.5725190839694" y="626.76056338028172"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xvq-Qt-ZtX">

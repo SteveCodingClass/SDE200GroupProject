@@ -8,6 +8,8 @@
 import UIKit
 
 class HistoryTableViewController: UITableViewController {
+    
+    var games: [Game] = Game.loadGameData()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,23 +25,27 @@ class HistoryTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return games.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell", for: indexPath) as! HistoryTableViewCell
+        let game = games[indexPath.row]
 
         // Configure the cell...
+        if game.winner == "Empty" {
+            cell.update(with: Game(winner: "No Data!", blackjack: false, playerScore: 0, dealerScore: 0))
+        } else {
+            cell.update(with: game)
+        }
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

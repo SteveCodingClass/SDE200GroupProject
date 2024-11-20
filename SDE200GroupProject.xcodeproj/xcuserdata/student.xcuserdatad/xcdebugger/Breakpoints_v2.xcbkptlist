@@ -14,10 +14,10 @@
             filePath = "SDE200GroupProject/SecondViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "SecondViewController"
-            landmarkType = "3">
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "determineWinner()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -30,9 +30,9 @@
             filePath = "SDE200GroupProject/SecondViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "resetBoard(game:)"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "resetBoard()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
