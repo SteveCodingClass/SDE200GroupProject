@@ -45,22 +45,28 @@ class SecondViewController: UIViewController {
         nameLabel.text = intro + nameLabelText
         let viewController = ViewController()
         let deck = viewController.createDeck()
+        self.playerScoreLabel.text = "\(self.nameLabelText)'s Score: "
         deckOfCards = deck.0
         valueArray = deck.1
     }
     
     // Deal the player a card on tap
     @IBAction func hitButtonTapped(_ sender: UIButton) {
+        let queue = DispatchQueue(label: "update")
         let card = pickRandomCard()
-        addCardToStackView(card: card, stackView: playerCardsStackView)
-        playerScore += card.1
+        self.addCardToStackView(card: card, stackView: self.playerCardsStackView)
+        self.playerScore += card.1
         
-        currentPlayerCards.append(card)
-        playerScoreLabel.text = "Player One: \(playerScore)"
-        if self.playerScore > 21 {
-            bustLabel.isHidden = false
-            sleep(1)
-            standButtonTapped(standButton)
+        self.currentPlayerCards.append(card)
+        self.playerScoreLabel.text = "\(self.nameLabelText)'s Score: \(self.playerScore)"
+        queue.async {
+            if self.playerScore > 21 {
+                DispatchQueue.main.async{
+                    self.bustLabel.isHidden = false
+                }
+                sleep(1)
+                self.standButtonTapped(self.standButton)
+            }
         }
     }
         
@@ -70,7 +76,6 @@ class SecondViewController: UIViewController {
         playerArray["play\(turnCount)"] = currentPlayerCards
         
         dealerScore = 0
-        dealerCardsStackView.arrangedSubviews.forEach { $0.removeFromSuperview()}
         dealDealerCards()
     }
     
@@ -102,7 +107,7 @@ class SecondViewController: UIViewController {
             for i in self.dealerCardsStackView.arrangedSubviews {
                 i.removeFromSuperview()
             }
-            self.playerScore = 0; self.playerScoreLabel.text = "Player Score: "
+            self.playerScore = 0; self.playerScoreLabel.text = "\(self.nameLabelText)'s Score: "
             self.dealerScore = 0; self.dealerScoreLabel.text = "Dealer Score: "
             self.resultLabel.isHidden = true
             self.bustLabel.isHidden = true
